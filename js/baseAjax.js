@@ -40,6 +40,7 @@
 		    vpasswd = $passwd.val(),
 		    $phone  = $form.find('[data-type=phone]'),
 		    vphone  = $phone.val(),
+		    vvphone = '',
 		    $validity  = $form.find('[data-type=validity]'),
 		    vvalidity  = $validity.val(),
 		    $afterthree  = $form.find('[data-type=afterthree]'),
@@ -59,31 +60,32 @@
 			}
 		}
 		if($passwd.size()){
-			vText = !(vpasswd.replace(/\D/g,'').length==6) ? '银卡密码只能为6位' : '';
+			vText = !(/\d{6}/.test(vpasswd)) ? '银行卡密码只能为6位数字' : '';
 			if(vText!=''){
 			 	return error($passwd);
 			}
 		}
 		if($phone.size()){
-			vText = !(vphone.replace(/\D/g,'').length==11) ? '手机号只能是11位数字！' : '';
+			vvphone = vphone.replace(/\D/g,'');
+			vText = !(/\d{11}/.test(vvphone)) ? '手机号只能是11位数字！' : '';
 			if(vText!=''){
 			 	return error($phone);
 			}
 		}
 		if($validity.size()){
-			vText = !(vvalidity.replace(/\D/g,'').length==4) ? '有效期只能是4位数字！' : '';
+			vText = !(/\d{4}/.test(vvalidity)) ? '有效期只能是4位数字！' : '';
 			if(vText!=''){
 			 	return error($validity);
 			}
 		}
 		if($afterthree.size()){
-			vText = !(vafterthree.replace(/\D/g,'').length==3) ? '请输入卡背面最后3位数字！' : '';
+			vText = !(/\d{3}/.test(vafterthree)) ? '请输入卡背面最后3位数字！' : '';
 			if(vText!=''){
 			 	return error($afterthree);
 			}
 		}		
 		if($vcode.size()){
-			vText = !(vvcode.replace(/\D/g,'').length==6) ? '短信验证码只能是6位数字！' : '';
+			vText = !(/\d{6}/.test(vvcode)) ? '短信验证码只能是6位数字！' : '';
 			if(vText!=''){
 			 	$('.J_j_vcode').next('.error').html('<i class="glyphicon glyphicon-remove-sign"></i>' + vText);
 			 	return false;
