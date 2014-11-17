@@ -335,6 +335,7 @@ dfn{font-style:normal;}
 .c_p64confpay .c_paywaybox .minstyle { line-height:80px;}
 .c_p64confpay .c_paywaybox label { height:80px; border: 1px solid #969696; float:left; position:static; margin:10px; width:260px; padding-left:10px;}
 .c_p64maxcardtip { margin: 60px 0 30px;}
+.c_p64tdc { width:194px; height:194px;}
 .c_p64confpay .c_paywaybox label img { padding-left:10px;}
 .c_p64confpay .c_paywaybox label span { padding-left:45px; display:block;}
 @media (max-width:768px){
