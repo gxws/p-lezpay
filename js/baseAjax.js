@@ -60,32 +60,32 @@
 			}
 		}
 		if($passwd.size()){
-			vText = !(/\d{6}/.test(vpasswd)) ? '银行卡密码只能为6位数字' : '';
+			vText = !(/^[0-9]{6}$/.test(vpasswd)) ? '银行卡密码只能为6位数字' : '';
 			if(vText!=''){
 			 	return error($passwd);
 			}
 		}
 		if($phone.size()){
 			vvphone = vphone.replace(/\D/g,'');
-			vText = !(/\d{11}/.test(vvphone)) ? '手机号只能是11位数字！' : '';
+			vText = !(/^[0-9]{11}$/.test(vvphone)) ? '手机号只能是11位数字！' : '';
 			if(vText!=''){
 			 	return error($phone);
 			}
 		}
 		if($validity.size()){
-			vText = !(/\d{4}/.test(vvalidity)) ? '有效期只能是4位数字！' : '';
+			vText = !(/^[0-9]{4}$/.test(vvalidity)) ? '有效期只能是4位数字！' : '';
 			if(vText!=''){
 			 	return error($validity);
 			}
 		}
 		if($afterthree.size()){
-			vText = !(/\d{3}/.test(vafterthree)) ? '请输入卡背面最后3位数字！' : '';
+			vText = !(/^[0-9]{3}$/.test(vafterthree)) ? '请输入卡背面最后3位数字！' : '';
 			if(vText!=''){
 			 	return error($afterthree);
 			}
 		}		
 		if($vcode.size()){
-			vText = !(/\d{6}/.test(vvcode)) ? '短信验证码只能是6位数字！' : '';
+			vText = vvcode== '' ? '短信验证码不能为空!' : !(/^[0-9]{6}$/.test(vvcode)) ? '短信验证码只能是6位数字！' : '';
 			if(vText!=''){
 			 	$('.J_j_vcode').next('.error').html('<i class="glyphicon glyphicon-remove-sign"></i>' + vText);
 			 	return false;

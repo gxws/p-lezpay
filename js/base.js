@@ -95,6 +95,7 @@
 					$val	=	$this.val(),
 					$noSpac	=	$val.replace(/\W/g, ""),
 					str		=	'';
+			if($win.width()<768)return;
 			$val	=	$noSpac;
 			for(i=0;i<$noSpac.length;i++){
 				str += ( i % 4?'':i == 0?'':' ') + $val[i];
