@@ -43,7 +43,7 @@ dfn{font-style:normal;}
 .container{width:960px;}
 }
 @media (min-width:1200px){
-.container{width:960px;}
+.container{width:1170px;}
 }
 
 /* button */
@@ -243,6 +243,9 @@ dfn{font-style:normal;}
 .j_form .vcode{padding:0;}
 .j_form .vcode_btn{padding:0 0 0 5px;}
 .j_form .vcode_btn a{padding:0;}
+.j_form .banks label{font-weight:700;margin-bottom:10px;border:1px solid #646464;width:100%;padding:15px 0 15px 35px;}
+.j_form .banks .active{border:1px solid rgb(0,160,230);}
+.j_form .add_btn{line-height:25px;height:auto;border:1px solid #646464;}
 /*.j_form .pre{position:relative;}*/
 .j_form .help{position:absolute;width:100%;left:0;top:50px;min-height:352px;background:#e6e6e6 url(../images/j_r_help1_03.png) center 0 no-repeat;}
 @media (min-width:640px) and (max-width:768px){
@@ -273,9 +276,13 @@ dfn{font-style:normal;}
 .j_gainid .pa{overflow:visible;}
 .j_gainid .list-group{position:absolute;top:40px;left:123px;z-index:9;}
 .j_gainid .list-group a{text-decoration:none;}
+.j_gainid .form-group .error{padding:0 10px;}
 @media (min-width:640px) and (max-width:768px){
 .j_gainid .list-group{top:70px;left:208px;}
 .j_gainid .list-group a{text-decoration:none;}
+}
+@media (min-width:992px){
+.j_gainid .form-group .error{padding-left:10px;}
 }
 /* j_line_item */
 .j_line_item .row{line-height:30px;font-size:18px;}

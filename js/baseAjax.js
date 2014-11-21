@@ -99,15 +99,37 @@
 	 * @param {object} $form 表单对象
 	 * @return {bool}
 	 */
-	base.idSubmit = function($form){
+	base.idSubmit = function($btn,$form,fn){
 		var $id   = $form.find('[data-type=cardnub]'),
-				vid   = $id.val().replace(/\D/g,'').length;
+				idval = $id.val().replace(/\D/g,''),
+				vid   = idval.length;
+				$banks = $('.J_j_banks'),
+				vsize = $banks.size(),
+				$payment = $('.J_j_payment'),
+				tag = $payment.hasClass('disabled');
 		if($id.size()){
 			vText = !(vid == 16 || vid == 19) ? '付款银行卡只能是16或19位数字！' : '';
 			if(vText!=''){
 			 	return error($id);
 			}
 		}
+		base.ajaxgo($btn.attr('data-url'),function(d){
+			if(d.status==1){
+				$banks.attr('checked',false).parent('.active').removeClass('active');
+				$('.J_j_add_card').parent('p').before('<div class="radio banks">'+
+					  '<label class="active">'+
+					    '<input class="J_j_banks" type="radio" name="'+ d.data.name +'" checked="checked" id="optionsRadios'+ (vsize+1) +'" value="'+ d.data.idcard +'">'+
+					    '<span>'+d.data.info+'</span>'+
+					  '</label>'+
+					'</div>');
+				tag ? $payment.removeClass('disabled') : false ;
+				fn();
+			}
+			else{
+				vText = d.message;
+				error($id);
+			}
+		},{"status":"1","message":"卡号错误！","data":{"name":"optionsRadios","idcard":"45665456465465","info":"中国银行（信用卡）2000****3333"}},{"idcard":idval})
 	}
 	function error($obj){
 		$obj.parent().next('.error').html('<i class="glyphicon glyphicon-remove-sign"></i>' + vText);

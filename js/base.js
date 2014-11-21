@@ -41,8 +41,13 @@
 			var $form = $(this);
 			return base.nionpaySubmit($form)
 		}).on('submit','.J_j_idform',function(){//银行卡号验证
-			var $form = $(this);
-			return base.idSubmit($form)
+			// var $form = $(this);
+			// return base.idSubmit($form)
+		}).on('click','.J_j_addcard_ok',function(){//添加银行卡号表单提交
+			var $form = $('.J_j_idform');
+			base.idSubmit($(this),$form,function(){
+				$('#myModal').modal('hide');
+			});
 		}).on('focus','.J_j_fm input',function(){//获取焦点,错误提示消失
 			$(this).parent().next('.error').text('');
 		}).on('focus','.J_j_fm input[data-type=vcode]',function(){//获取焦点,错误提示消失
@@ -77,6 +82,14 @@
 				});
 		  }
 			return false;
+		}).on('click','.J_j_banks',function(){//选择历史卡号
+			var $this = $(this),
+			    $active = $('.J_j_banks').parent('.active'),
+			    $thisP = $this.parent('label'),
+			    tag = $thisP.hasClass('active');
+			tag ? false : $thisP.addClass('active') && $active.removeClass('active');
+		}).on('click','.J_j_add_card',function(){//点击添加银行卡号清空错误提示输入框
+			$('[data-type=cardnub]').val('').parent().next('.error').text('');
 		}).on('input','.J_k_phone',function(){//344方式显示手机号码
 			var		$this	=	$(this),
 					$val	=	$this.val(),
@@ -116,8 +129,7 @@
 			if($this.find('.weixin input[type=radio]').prop('checked') && window.WeixinJSBridge && base.wxCallback){
 				 return base.wxGoToPay(this);
 			}
-		})
-		.on('click','.c_paywaybox label',function(){//选择付款方式（银行、淘宝、微信）
+		}).on('click','.c_paywaybox label',function(){//选择付款方式（银行、淘宝、微信）
 			var $this = $(this);
 			if($('.J_c_paybox').hasClass('on')){
 				return false;
@@ -160,7 +172,22 @@
 			});
 		}
 	};
-
+	/**
+	 * 选中首张历史卡号
+	 * @method base.radioFocus
+	 * @since p64
+	 * @return {none}
+	 */
+	init.radioFocus = function(){
+			var $banks = $('.J_j_banks'),
+			    $payment = $('.J_j_payment');
+			if($banks.size()){
+				$banks.eq(0).attr('checked','checked').parent().addClass('active');
+			}
+			else if($payment.size()){
+				$payment.addClass('disabled');
+			}
+		}
 	/**
 	 * 判断注册协议是否阅读
 	 * @method base.k_change
@@ -224,6 +251,19 @@
 			$('.J_c_paybox').addClass('on');
 		}
 		$('.J_c_paybox input[type=radio]').prop('disabled', !disabled);
+	};
+
+	/**
+	 * IE浏览器版本判断
+	 * @method base.IEjudge
+	 * @since p64
+	 * @return {none}
+	 */
+	init.IEjudge = function(){
+		var $IEjudge = $('.J_k_IEjudge');
+		if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.split(";")[1].replace(/[MSIE \.0]/g,"") < 9){
+			window.location.href = $IEjudge.attr('href');
+		}
 	}
 
 /**************************** end p64 ****************************/
