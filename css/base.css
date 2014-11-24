@@ -192,8 +192,11 @@ dfn{font-style:normal;}
 .k_prompt .price_bottom{margin:0 0 12px;}
 .k_prompt .price>span{font-size:20px;color:#f06e00;}
 .k_prompt>ul{overflow:hidden;width:520px;padding:0;margin:50px auto 0;}
-.k_prompt>ul>li{float:left;width:162px;height:107px;border:1px solid #cbcbcb;list-style:none;margin:0 5px;font-size:16px;}
+.k_prompt>ul>li{display:block;float:left;width:161px;height:107px;border:1px solid #cbcbcb;list-style:none;margin:0 5px;font-size:16px;}
 .k_prompt>ul>li>a{display:block;margin:4px auto;color:#000;text-decoration:none;}
+.k_prompt ul{overflow:hidden;width:520px;padding:0;margin:50px auto 0;}
+.k_prompt ul li{display:block;float:left;width:161px;height:107px;border:1px solid #cbcbcb;list-style:none;margin:0 5px;font-size:16px;}
+.k_prompt ul li a{display:block;margin:4px auto;color:#000;text-decoration:none;}
 .k_prompt .fire{margin:5px;}
 @media (min-width:640px) and (max-width:767px){
 .k_prompt{padding:138px 10px 0;}
