@@ -261,8 +261,10 @@
 	 */
 	init.IEjudge = function(){
 		var $IEjudge = $('.J_k_IEjudge');
-		if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.split(";")[1].replace(/[MSIE \.0]/g,"") < 9){
-			window.location.href = $IEjudge.attr('href');
+		if($IEjudge.size()){
+			if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.split(";")[1].replace(/[MSIE \.0]/g,"") < 9){
+				window.location.href = $IEjudge.attr('href');
+			}
 		}
 	}
 
